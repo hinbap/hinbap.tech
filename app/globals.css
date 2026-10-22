@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+	/* Fonts */
+	--font-sans: var(--font-noto-sans);
+	--font-ko: var(--font-noto-sans-kr);
+	--font-serif: var(--font-alegreya);
+	--font-mono: var(--font-jetbrains-mono);
+
+	/* Colors */
+	--color-ink: #021002;
+	--color-paper: #fcfcfc;
+	--color-muted: "#6C7178";
+	--color-line: "#E0E3E7";
+	--color-accent: #035719;
+	--color-accent2: "#449843";
+}
+
+:root {
+	--background: var(--color-paper);
+	--foreground: var(--color-ink);
+}
+
+@layer base {
+	body {
+		@apply bg-paper text-ink;
+		transition: background-color 300ms ease, color 300ms ease;
+		@apply font-sans;
+	}
+
+	html:lang(ko) body {
+		@apply font-ko;
+	}
+}
+
+.dark {
+	--theme-ink: #fcfcfc;
+	--theme-paper: #021002;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	body {
+		transition: none;
+	}
+}
