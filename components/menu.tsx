@@ -4,6 +4,30 @@ import { useState } from "react";
 import Link from "next/link";
 import { CiMenuBurger } from "react-icons/ci";
 
+interface Link {
+	name: string;
+	href: string;
+}
+
+const LINKS: Link[] = [
+	{
+		name: "Home",
+		href: "/",
+	},
+	{
+		name: "Articles",
+		href: "/articles",
+	},
+	{
+		name: "Projects",
+		href: "/projects",
+	},
+	{
+		name: "Schedule",
+		href: "/schedule",
+	},
+]
+
 export default function Menu() {
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -36,29 +60,16 @@ export default function Menu() {
 					}`}
 			>
 
-				<Link
-					href="/"
-					onClick={() => setIsOpen(false)}
-					className="transition-opacity hover:opacity-50"
-				>
-					HOME
-				</Link>
-
-				<Link
-					href="/articles"
-					onClick={() => setIsOpen(false)}
-					className="transition-opacity hover:opacity-50"
-				>
-					ARTICLES
-				</Link>
-
-				<Link
-					href="/projects"
-					onClick={() => setIsOpen(false)}
-					className="transition-opacity hover:opacity-50"
-				>
-					PROJECTS
-				</Link>
+				{LINKS.map((l) => (
+					<Link
+						key={l.name}
+						href={l.href}
+						onClick={() => setIsOpen(false)}
+						className="transition-opacity uppercase hover:opacity-50"
+					>
+						{l.name}
+					</Link>
+				))}
 			</nav>
 		</div>
 	);
